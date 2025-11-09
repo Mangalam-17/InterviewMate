@@ -16,8 +16,6 @@ const App = () => {
           {/* {default Route} */}
           <Route path="/" element={<LandingPage />} />
 
-          {/* <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} /> */}
           <Route path="/dashboard" element={<Dashboard />} />
           <Route
             path="/interview-mate/:sessionId"
@@ -25,7 +23,6 @@ const App = () => {
           />
         </Routes>
       </Router>
-
     </div>
   );
 };
