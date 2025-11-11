@@ -6,6 +6,16 @@ const connectDB = require("./config/db");
 
 const app = express();
 
+// route imports
+const authRoutes = require("./routes/authRoutes");
+const sessionRoutes = require("./routes/sessionRoutes");
+const questionRoutes = require("./routes/questionRoutes");
+const {
+  generateConceptExplanation,
+  generateInterviewQuestions,
+} = require("./controllers/aiController");
+const { protect } = require("./middlewares/authMiddleware");
+
 // Middleware to handle cors
 app.use(
   cors({
@@ -23,7 +33,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/auth", authRoutes);
-app.use("/api/session", sessionRoutes);
+app.use("/api/sessions", sessionRoutes);
 app.use("/api/questions", questionRoutes);
 
 app.use("/api/ai/generate-questions", protect, generateInterviewQuestions);

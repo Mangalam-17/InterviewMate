@@ -158,7 +158,7 @@
 
 import React, { useState } from "react";
 
-import HERO_IMG from "../assets/Hero-img.png";
+import HERO_IMG from "../assets/hero_img.png";
 import { APP_FEATURES } from "../utils/data";
 import { useNavigate } from "react-router-dom";
 import { LuSparkles } from "react-icons/lu";
