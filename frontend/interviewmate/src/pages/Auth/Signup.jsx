@@ -5,7 +5,6 @@ import { validateEmail } from "../../utils/helper";
 import { UserContext } from "../../context/userContext";
 import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
-import uploadImage from "../../utils/imageUploads";
 
 const Signup = ({ setCurrentPage }) => {
   const [fullName, setFullName] = useState("");
