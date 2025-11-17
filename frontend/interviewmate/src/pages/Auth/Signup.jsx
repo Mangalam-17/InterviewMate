@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/Inputs/Input";
-import ProfilePhotoSelector from "../../components/Inputs/ProfilePhotoSelector";
 import { validateEmail } from "../../utils/helper";
 import { UserContext } from "../../context/userContext";
 import axiosInstance from "../../utils/axiosInstance";
@@ -9,9 +8,6 @@ import { API_PATHS } from "../../utils/apiPaths";
 import uploadImage from "../../utils/imageUploads";
 
 const Signup = ({ setCurrentPage }) => {
-  const [profilePic, setProfilePic] = useState(null);
-  const [preview, setPreview] = useState(null);
-
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -30,18 +26,10 @@ const Signup = ({ setCurrentPage }) => {
     setError("");
 
     try {
-      let profileImageUrl = "";
-
-      if (profilePic) {
-        const uploadRes = await uploadImage(profilePic);
-        profileImageUrl = uploadRes.imageUrl || "";
-      }
-
       const response = await axiosInstance.post(API_PATHS.AUTH.REGISTER, {
         name: fullName,
         email,
         password,
-        profileImageUrl,
       });
 
       const { token } = response.data;
@@ -71,13 +59,6 @@ const Signup = ({ setCurrentPage }) => {
       </p>
 
       <form onSubmit={handleSignup} className="flex flex-col gap-4">
-        <ProfilePhotoSelector
-          image={profilePic}
-          setImage={setProfilePic}
-          preview={preview}
-          setPreview={setPreview}
-        />
-
         <Input
           value={fullName}
           onChange={({ target }) => setFullName(target.value)}

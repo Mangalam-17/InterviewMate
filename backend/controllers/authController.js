@@ -12,7 +12,7 @@ const generateToken = (userId) => {
 // @access   Public
 const registerUser = async (req, res) => {
   try {
-    const { name, email, password, profileImageUrl } = req.body;
+    const { name, email, password } = req.body;
 
     // check if user already exists
     const userExists = await User.findOne({ email });
@@ -29,7 +29,6 @@ const registerUser = async (req, res) => {
       name,
       email,
       password: hashedPassword,
-      profileImageUrl,
     });
 
     // Returning user data with JWT
@@ -37,7 +36,6 @@ const registerUser = async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
-      profileImageUrl: user.profileImageUrl,
       token: generateToken(user._id),
     });
   } catch (error) {
