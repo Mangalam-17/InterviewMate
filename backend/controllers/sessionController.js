@@ -66,7 +66,7 @@ exports.getSessionById = async (req, res) => {
     if (!session) {
       return res
         .status(404)
-        .josn({ success: false, message: "Session not found!" });
+        .json({ success: false, message: "Session not found!" });
     }
 
     res.status(200).json({ success: true, session });
@@ -97,7 +97,7 @@ exports.deleteSession = async (req, res) => {
     await Question.deleteMany({ session: session._id });
 
     // then, delete the session
-    await Session.deleteOne();
+    await session.deleteOne();
 
     res.status(200).json({ message: "Session deleted successfully !" });
   } catch (error) {

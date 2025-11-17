@@ -1,32 +1,42 @@
-export const APP_FEATURES = [
+export const CARD_BG = [
   {
-    id: "01",
-    title: "Tailored just for you",
-    description:
-      "Get Interview Questions and model answers based on you role, experience and specific focus areas",
+    id: 1,
+    bgcolor: "linear-gradient(135deg, #FFE8E5 0%, #FFF4F3 100%)",
   },
   {
-    id: "02",
-    title: "Learn at your own pace",
-    description:
-      "Expand answers only when you're ready. Dive deeper in to any concept instantly with AI-powered platform",
+    id: 2,
+    bgcolor: "linear-gradient(135deg, #FFE6F1 0%, #FFF4FA 100%)",
   },
   {
-    id: "03",
-    title: "Capture your insights",
-    description:
-      "Add personal notes to any question and pin important ones to the top, making your learning more organizable",
+    id: 3,
+    bgcolor: "linear-gradient(135deg, #EAF3FF 0%, #F6FAFF 100%)",
   },
   {
-    id: "04",
-    title: 'Understand the "Why" behind answers',
-    description:
-      "Beyond just answers, unlock detailed concept explanations powered by AI, helping you master each concept",
+    id: 4,
+    bgcolor: "linear-gradient(135deg, #FFF3E6 0%, #FFF9F2 100%)",
   },
   {
-    id: "05",
-    title: "Save, Organize, and Revisit",
-    description:
-      "Easily save your Interview Sets, Organize them neatly in your dashboard, and pick up your preparation right where you left last time",
+    id: 5,
+    bgcolor: "linear-gradient(135deg, #E9FFF3 0%, #F5FFF9 100%)",
+  },
+  {
+    id: 6,
+    bgcolor: "linear-gradient(135deg, #F4F4F4 0%, #FBFBFB 100%)",
+  },
+  {
+    id: 7,
+    bgcolor: "linear-gradient(135deg, #F3ECFF 0%, #F9F5FF 100%)",
+  },
+  {
+    id: 8,
+    bgcolor: "linear-gradient(135deg, #E7F9FF 0%, #F4FCFF 100%)",
+  },
+  {
+    id: 9,
+    bgcolor: "linear-gradient(135deg, #FFF0F0 0%, #FFF7F7 100%)",
+  },
+  {
+    id: 10,
+    bgcolor: "linear-gradient(135deg, #FFF7E8 0%, #FFFCF4 100%)",
   },
 ];

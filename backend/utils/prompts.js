@@ -30,6 +30,12 @@ Return ONLY a JSON array with this exact structure:
 ]
 
 CRITICAL:
+- MUST return valid JSON array
+- NO backticks
+- NO markdown
+- NO code snippets
+- NO comments
+- NO line starting with \`\`\`
 - Output must be pure, valid JSON
 - No additional text, markdown, or explanations
 - No code blocks around the JSON

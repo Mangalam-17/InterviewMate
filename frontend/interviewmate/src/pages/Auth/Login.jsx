@@ -1,110 +1,59 @@
-// import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import Input from "../../components/Inputs/Input";
-
-// const Login = ({ setCurrentPage }) => {
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-//   const [error, setError] = useState(null);
-
-//   const navigate = useNavigate();
-
-//   // Handle login Form Submit
-//   const handleLogin = async (e) => {
-//     e.preventDefault();
-//   };
-
-//   return (
-//     <div className="w0[90vw] md:w-[33vw] p-7 flex flex-col justify-center">
-//       <h3 className="text-lg font-semibold text-black ">Welcome Back !</h3>
-//       <p>Please enter you details to log in</p>
-
-//       <form onSubmit={handleLogin}>
-//         <Input
-//           value={email}
-//           onChange={({ target }) => setEmail(target.value)}
-//           label="Email Address"
-//           placeholder="abc@gmail.com"
-//           type="text"
-//         />
-//         <Input
-//           value={password}
-//           onChange={({ target }) => setPassword(target.value)}
-//           label="Password"
-//           placeholder="Min 8 characters"
-//           type="password"
-//         />
-
-//         {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
-
-//         <button type="submit" className="btn-primary">
-//           LOGIN
-//         </button>
-
-//         <p className="text-[13px text-slate-800 mt-3">
-//           Don't have an account?{" "}
-//           <button
-//             className="font-medium text-primary underline cursor-pointer"
-//             onClick={() => {
-//               setCurrentPage("signup");
-//             }}
-//           >
-//             Signup
-//           </button>
-//         </p>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default Login;
-
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/Inputs/Input";
 import { validateEmail } from "../../utils/helper";
+import axiosInstance from "../../utils/axiosInstance";
+import { API_PATHS } from "../../utils/apiPaths";
+import { UserContext } from "../../context/userContext";
 
 const Login = ({ setCurrentPage }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+
+  const { updateUser } = useContext(UserContext);
   const navigate = useNavigate();
 
-  // Handle login Form Submit
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    if (!validateEmail(email)) {
-      setError("Please enter a valid Email Address !");
-      return;
-    }
-
-    if (!password) {
-      setError("Please enter the password !");
-      return;
-    }
+    if (!validateEmail(email)) return setError("Enter a valid email!");
+    if (!password) return setError("Enter your password!");
 
     setError("");
 
-    // Login API Call
     try {
-    } catch (error) {
-      if (error.response && error.response.data.message) {
-        setError(error.response.data.message);
-      } else {
-        setError("Something went wrong ! Please try again");
+      const response = await axiosInstance.post(API_PATHS.AUTH.LOGIN, {
+        email,
+        password,
+      });
+
+      const { token } = response.data;
+      if (token) {
+        localStorage.setItem("token", token);
+        updateUser(response.data);
+        navigate("/dashboard");
       }
+    } catch (err) {
+      setError(err.response?.data?.message || "Something went wrong!");
     }
   };
 
   return (
-    <div className="w-[90vw] md:w-[33vw] p-7 flex flex-col justify-center">
-      <h3 className="text-lg font-semibold text-black">Welcome Back!</h3>
-      <p className="text-xs text-slate-700 mt-[5px] mb-6">
-        Please enter your details to log in
+    <div
+      className="
+      w-[90vw] md:w-[32vw] bg-white rounded-2xl shadow-xl p-8 
+      border border-red-200 animate-[fadeIn_0.3s_ease]
+    "
+    >
+      <h3 className="text-2xl font-semibold text-red-600 text-center">
+        Welcome Back 👋
+      </h3>
+      <p className="text-sm text-gray-600 text-center mt-1 mb-6">
+        Login to continue your interview journey
       </p>
 
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleLogin} className="flex flex-col gap-4">
         <Input
           value={email}
           onChange={({ target }) => setEmail(target.value)}
@@ -112,6 +61,7 @@ const Login = ({ setCurrentPage }) => {
           placeholder="abc@gmail.com"
           type="text"
         />
+
         <Input
           value={password}
           onChange={({ target }) => setPassword(target.value)}
@@ -120,20 +70,24 @@ const Login = ({ setCurrentPage }) => {
           type="password"
         />
 
-        {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
+        {error && <p className="text-red-500 text-xs">{error}</p>}
 
-        <button type="submit" className="btn-primary">
+        <button
+          type="submit"
+          className="
+          mt-2 bg-red-500 text-white rounded-xl py-3 font-semibold 
+          hover:bg-red-600 transition shadow-md
+        "
+        >
           LOGIN
         </button>
 
-        <p className="text-[13px] text-slate-800 mt-3">
+        <p className="text-sm text-gray-700 text-center mt-3">
           Don't have an account?{" "}
           <button
-            type="button" // Added type="button" to prevent form submission
-            className="font-medium text-primary underline cursor-pointer"
-            onClick={() => {
-              setCurrentPage("signup");
-            }}
+            type="button"
+            className="text-red-600 font-semibold underline cursor-pointer"
+            onClick={() => setCurrentPage("signup")}
           >
             Signup
           </button>
