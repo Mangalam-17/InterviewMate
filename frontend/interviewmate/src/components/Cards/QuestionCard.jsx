@@ -43,7 +43,7 @@ const QuestionCard = ({
 
           {/* LEARN MORE */}
           <button
-            className="px-3 py-1 text-xs bg-red-50 border border-red-200 rounded text-red-700 hover:bg-red-100"
+            className="px-3 py-1 text-xs bg-red-50 border border-red-200 rounded text-red-700 hover:bg-red-100 flex items-center gap-1"
             onClick={() => {
               setExpanded(true);
               onLearnMore();
