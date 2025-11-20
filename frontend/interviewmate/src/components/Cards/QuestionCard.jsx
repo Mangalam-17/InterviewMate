@@ -49,6 +49,7 @@ const QuestionCard = ({
               onLearnMore();
             }}
           >
+            Deep Dive
             <LuSparkles size={14} />
           </button>
 
