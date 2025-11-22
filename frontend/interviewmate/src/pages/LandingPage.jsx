@@ -436,12 +436,12 @@ const LandingPage = () => {
                 </div>
 
                 <h1 className="text-5xl text-black font-semibold mt-2 mb-6 leading-tight">
-                  Unlock <br />
+                  Master Interviews with <br />
                   {/* VISUALLY PROMINENT AI-Powered */}
                   <span className="ai-badge">
                     <span className="ai-text shimmer-text">AI-Powered</span>
                   </span>{" "}
-                  Insights for Next-Level Interview Preparation
+                  Insights
                 </h1>
 
                 <div className="mb-2">

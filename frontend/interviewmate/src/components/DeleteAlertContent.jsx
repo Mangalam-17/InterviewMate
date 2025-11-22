@@ -6,7 +6,7 @@ const DeleteAlertContent = ({ content, onDelete }) => {
       <p className="text-[14px]">{content}</p>
 
       <div className="flex justify-end mt-6">
-        <button type="button" className="btn-small" onClick={onDelete}>
+        <button type="button" className="btn-small bg-red-500" onClick={onDelete}>
           Delete
         </button>
       </div>
